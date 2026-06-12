@@ -1,0 +1,13 @@
+# Backend
+lostfound/target/
+
+# Frontend
+lostfound-frontend/node_modules/
+lostfound-frontend/build/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

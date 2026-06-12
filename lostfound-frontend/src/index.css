@@ -1,0 +1,75 @@
+body {
+  background: linear-gradient(
+    135deg,
+    #081120,
+    #12233f,
+    #081120
+  );
+
+  min-height: 100vh;
+  color: white;
+}
+
+/* Navbar */
+
+.navbar {
+  box-shadow:
+    0 0 15px #00ffff,
+    0 0 25px #00ffff;
+}
+
+/* Dashboard Cards */
+
+.dashboard-card {
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !important;
+
+  backdrop-filter: blur(15px);
+
+  border-radius: 25px;
+
+  transition: all 0.4s ease;
+
+  min-height: 220px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.dashboard-card:hover {
+
+  transform:
+    translateY(-10px)
+    scale(1.03);
+
+  box-shadow:
+    0 0 20px #00ffff,
+    0 0 40px #00ffff,
+    0 0 60px #00ffff;
+}
+
+.dashboard-card h4 {
+
+  color: white;
+
+  font-weight: 600;
+}
+
+/* Footer */
+
+footer {
+
+  box-shadow:
+    0 0 15px #00ffff,
+    0 0 25px #00ffff;
+
+  margin-top: 80px;
+}
