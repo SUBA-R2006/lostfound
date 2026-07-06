@@ -1,6 +1,7 @@
 package com.college.lostfound.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -71,6 +72,7 @@ public class LostItemController {
 
         return service.getFoundItems();
     }
+   
 
     @PatchMapping("/claim/{id}")
     public LostItem claimItem(
@@ -120,5 +122,13 @@ public class LostItemController {
                 updatedItem,
                 authentication.getName()
         );
+    }
+
+    // DASHBOARD STATISTICS
+
+    @GetMapping("/stats")
+    public Map<String, Long> getStats() {
+
+        return service.getStats();
     }
 }

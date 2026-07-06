@@ -31,7 +31,9 @@ function Register() {
           }
         );
 
-      alert(response.data);
+      alert(
+        response.data
+      );
 
       navigate("/");
 
@@ -46,60 +48,112 @@ function Register() {
   };
 
   return (
-    <div>
 
-      <h2>Register</h2>
+    <div
+      className="
+      d-flex
+      justify-content-center
+      align-items-center"
+      style={{
+        minHeight: "80vh"
+      }}
+    >
 
-      <form onSubmit={handleRegister}>
+      <div
+        className="p-5"
+        style={{
+          width: "450px",
+          borderRadius: "25px",
+          background:
+            "rgba(255,255,255,0.1)",
+          backdropFilter:
+            "blur(15px)",
+          boxShadow:
+            "0 0 25px #00ffff"
+        }}
+      >
 
-        <input
-          type="text"
-          placeholder="Enter Name"
-          value={name}
-          onChange={(e) =>
-            setName(e.target.value)
+        <h2
+          className="
+          text-center
+          mb-4"
+        >
+          📝 Create Account
+        </h2>
+
+        <form
+          onSubmit={handleRegister}
+        >
+
+          <input
+            type="text"
+            className="
+            form-control
+            mb-3"
+            placeholder="Enter Name"
+            value={name}
+            onChange={(e) =>
+              setName(
+                e.target.value
+              )
+            }
+          />
+
+          <input
+            type="email"
+            className="
+            form-control
+            mb-3"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) =>
+              setEmail(
+                e.target.value
+              )
+            }
+          />
+
+          <input
+            type="password"
+            className="
+            form-control
+            mb-3"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) =>
+              setPassword(
+                e.target.value
+              )
+            }
+          />
+
+          <button
+            type="submit"
+            className="
+            btn
+            btn-info
+            w-100"
+          >
+            Register
+          </button>
+
+        </form>
+
+        <hr />
+
+        <button
+          className="
+          btn
+          btn-outline-light
+          w-100"
+          onClick={() =>
+            navigate("/")
           }
-        />
-
-        <br /><br />
-
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
-        />
-
-        <br /><br />
-
-        <input
-          type="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
-        />
-
-        <br /><br />
-
-        <button type="submit">
-          Register
+        >
+          Back To Login
         </button>
 
-      </form>
-
-      <br />
-
-      <button
-        onClick={() =>
-          navigate("/")
-        }
-      >
-        Back To Login
-      </button>
+      </div>
 
     </div>
   );

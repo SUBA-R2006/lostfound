@@ -15,12 +15,45 @@ function AddItem() {
   const [status, setStatus] =
     useState("LOST");
 
+  const [file, setFile] =
+    useState(null);
+
   const handleSubmit = async (e) => {
 
     e.preventDefault();
 
     try {
 
+      let imageUrl = "";
+
+      // Upload Image First
+      if (file) {
+
+        const formData =
+          new FormData();
+
+        formData.append(
+          "file",
+          file
+        );
+
+        const uploadResponse =
+          await API.post(
+            "/upload",
+            formData,
+            {
+              headers: {
+                "Content-Type":
+                  "multipart/form-data"
+              }
+            }
+          );
+
+        imageUrl =
+          uploadResponse.data;
+      }
+
+      // Save Item
       const response =
         await API.post(
           "/items/add",
@@ -28,7 +61,8 @@ function AddItem() {
             itemName,
             description,
             location,
-            status
+            status,
+            imageUrl
           }
         );
 
@@ -44,6 +78,7 @@ function AddItem() {
       setDescription("");
       setLocation("");
       setStatus("LOST");
+      setFile(null);
 
     } catch (error) {
 
@@ -60,9 +95,7 @@ function AddItem() {
 
       <h2>Add Item</h2>
 
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
 
         <input
           type="text"
@@ -119,6 +152,18 @@ function AddItem() {
             FOUND
           </option>
         </select>
+
+        <br /><br />
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) =>
+            setFile(
+              e.target.files[0]
+            )
+          }
+        />
 
         <br /><br />
 

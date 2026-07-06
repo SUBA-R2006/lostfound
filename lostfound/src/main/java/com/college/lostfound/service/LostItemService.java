@@ -1,6 +1,8 @@
 package com.college.lostfound.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -155,4 +157,41 @@ public class LostItemService {
 
         return repository.save(item);
     }
+
+    // DASHBOARD STATISTICS
+
+    public Map<String, Long> getStats() {
+
+        Map<String, Long> stats =
+                new HashMap<>();
+
+        stats.put(
+                "totalItems",
+                repository.count()
+        );
+
+        stats.put(
+                "lostItems",
+                repository.countByStatus(
+                        ItemStatus.LOST
+                )
+        );
+
+        stats.put(
+                "foundItems",
+                repository.countByStatus(
+                        ItemStatus.FOUND
+                )
+        );
+
+        stats.put(
+                "claimedItems",
+                repository.countByStatus(
+                        ItemStatus.CLAIMED
+                )
+        );
+
+        return stats;
+    }
+    
 }

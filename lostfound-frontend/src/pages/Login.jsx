@@ -13,13 +13,7 @@ function Login() {
 
     e.preventDefault();
 
-    console.log("LOGIN BUTTON CLICKED");
-    console.log("Email:", email);
-    console.log("Password:", password);
-
     try {
-
-      console.log("Sending request to backend...");
 
       const response = await API.post(
         "/auth/login",
@@ -29,16 +23,20 @@ function Login() {
         }
       );
 
-      console.log("FULL RESPONSE:", response);
+      // Backend returns these strings when login fails
+      if (
+        response.data === "User Not Found" ||
+        response.data === "Invalid Password"
+      ) {
 
+        alert(response.data);
+        return;
+      }
+
+      // Save JWT Token
       localStorage.setItem(
         "token",
         response.data
-      );
-
-      console.log(
-        "TOKEN SAVED:",
-        localStorage.getItem("token")
       );
 
       alert("Login Successful");
@@ -47,38 +45,7 @@ function Login() {
 
     } catch (error) {
 
-      console.log("ERROR OBJECT:", error);
-
-      if (error.response) {
-
-        console.log(
-          "STATUS:",
-          error.response.status
-        );
-
-        console.log(
-          "DATA:",
-          error.response.data
-        );
-
-      } else if (error.request) {
-
-        console.log(
-          "NO RESPONSE FROM SERVER"
-        );
-
-        console.log(
-          error.request
-        );
-
-      } else {
-
-        console.log(
-          "ERROR MESSAGE:",
-          error.message
-        );
-
-      }
+      console.error(error);
 
       alert("Login Failed");
     }

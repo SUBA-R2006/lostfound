@@ -35,24 +35,62 @@ function AllItems() {
     }
   };
 
-  return (
-    <div>
+  const claimItem = async (id) => {
 
-      <h2>All Items</h2>
+    try {
+
+      await API.patch(
+        `/items/claim/${id}`
+      );
+
+      alert(
+        "Item Claimed Successfully"
+      );
+
+      fetchItems();
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        "Claim Failed"
+      );
+    }
+  };
+
+  return (
+
+    <div className="container">
+
+      <h2 className="mb-4">
+        All Items
+      </h2>
 
       {
         items.map((item) => (
 
           <div
             key={item.id}
-            style={{
-              border: "1px solid black",
-              padding: "10px",
-              margin: "10px"
-            }}
+            className="card mb-3 p-3 shadow"
           >
 
-            <h3>
+            {item.imageUrl && (
+
+              <img
+                src={`http://localhost:8080${item.imageUrl}`}
+                alt={item.itemName}
+                style={{
+                  width: "250px",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "10px"
+                }}
+              />
+
+            )}
+
+            <h3 className="mt-3">
               {item.itemName}
             </h3>
 
@@ -61,28 +99,50 @@ function AllItems() {
             </p>
 
             <p>
-              Location :
-              {" "}
+              <strong>
+                Location:
+              </strong>{" "}
               {item.location}
             </p>
 
             <p>
-              Status :
-              {" "}
+              <strong>
+                Status:
+              </strong>{" "}
               {item.status}
             </p>
 
             <p>
-              Owner :
-              {" "}
+              <strong>
+                Owner:
+              </strong>{" "}
               {item.ownerEmail}
             </p>
 
+            {
+              item.status === "FOUND"
+              &&
+              (
+                <button
+                  className="btn btn-success"
+                  onClick={() =>
+                    claimItem(
+                      item.id
+                    )
+                  }
+                >
+                  Claim Item
+                </button>
+              )
+            }
+
           </div>
+
         ))
       }
 
     </div>
+
   );
 }
 

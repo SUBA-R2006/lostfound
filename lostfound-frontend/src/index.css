@@ -1,3 +1,5 @@
+/* ===== GLOBAL ===== */
+
 body {
   background: linear-gradient(
     135deg,
@@ -8,17 +10,39 @@ body {
 
   min-height: 100vh;
   color: white;
+  font-family: "Segoe UI", sans-serif;
 }
 
-/* Navbar */
+/* ===== NAVBAR ===== */
 
 .navbar {
+  background: linear-gradient(
+    90deg,
+    #0d6efd,
+    #00bcd4
+  ) !important;
+
   box-shadow:
     0 0 15px #00ffff,
     0 0 25px #00ffff;
 }
 
-/* Dashboard Cards */
+.navbar-brand {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: white !important;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #00ffff !important;
+}
+
+/* ===== DASHBOARD ===== */
 
 .dashboard-card {
 
@@ -57,13 +81,114 @@ body {
 }
 
 .dashboard-card h4 {
-
   color: white;
-
   font-weight: 600;
 }
 
-/* Footer */
+/* ===== FORMS ===== */
+
+form {
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.08
+  );
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 15px rgba(
+      0,
+      255,
+      255,
+      0.2
+    );
+}
+
+input,
+textarea,
+select {
+
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  margin-top: 5px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.15
+  );
+
+  color: white;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #ddd;
+}
+
+/* ===== BUTTONS ===== */
+
+button {
+
+  border: none;
+
+  padding:
+    10px
+    20px;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+button:hover {
+
+  transform:
+    scale(1.05);
+
+  box-shadow:
+    0 0 15px #00ffff;
+}
+
+/* ===== TABLES ===== */
+
+table {
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.08
+  );
+
+  color: white !important;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+}
+
+th {
+  background: #0d6efd;
+}
+
+/* ===== FOOTER ===== */
 
 footer {
 
@@ -72,4 +197,13 @@ footer {
     0 0 25px #00ffff;
 
   margin-top: 80px;
+}
+
+/* ===== HEADINGS ===== */
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: bold;
 }

@@ -32,23 +32,56 @@ function SearchItems() {
     }
   };
 
+  const claimItem = async (id) => {
+
+    try {
+
+      await API.patch(
+        `/items/claim/${id}`
+      );
+
+      alert(
+        "Item Claimed"
+      );
+
+      searchItems();
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        "Claim Failed"
+      );
+    }
+  };
+
   return (
-    <div>
 
-      <h2>Search Items</h2>
+    <div className="container">
 
-      <input
-        type="text"
-        placeholder="Enter Item Name"
-        value={itemName}
-        onChange={(e) =>
-          setItemName(
-            e.target.value
-          )
-        }
-      />
+      <h2 className="mb-4">
+        Search Items
+      </h2>
+
+      <div className="mb-3">
+
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Enter Item Name"
+          value={itemName}
+          onChange={(e) =>
+            setItemName(
+              e.target.value
+            )
+          }
+        />
+
+      </div>
 
       <button
+        className="btn btn-primary"
         onClick={searchItems}
       >
         Search
@@ -61,14 +94,25 @@ function SearchItems() {
 
           <div
             key={item.id}
-            style={{
-              border: "1px solid black",
-              padding: "10px",
-              margin: "10px"
-            }}
+            className="card mb-3 p-3 shadow"
           >
 
-            <h3>
+            {item.imageUrl && (
+
+              <img
+                src={`http://localhost:8080${item.imageUrl}`}
+                alt={item.itemName}
+                style={{
+                  width: "250px",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "10px"
+                }}
+              />
+
+            )}
+
+            <h3 className="mt-3">
               {item.itemName}
             </h3>
 
@@ -77,22 +121,43 @@ function SearchItems() {
             </p>
 
             <p>
-              Location :
-              {" "}
+              <strong>
+                Location:
+              </strong>{" "}
               {item.location}
             </p>
 
             <p>
-              Status :
-              {" "}
+              <strong>
+                Status:
+              </strong>{" "}
               {item.status}
             </p>
 
+            {
+              item.status === "FOUND"
+              &&
+              (
+                <button
+                  className="btn btn-success"
+                  onClick={() =>
+                    claimItem(
+                      item.id
+                    )
+                  }
+                >
+                  Claim Item
+                </button>
+              )
+            }
+
           </div>
+
         ))
       }
 
     </div>
+
   );
 }
 
